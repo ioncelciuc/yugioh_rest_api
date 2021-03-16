@@ -5,4 +5,5 @@ class YuGiOhCard{
   String desc;
   String image;
   String imageSmall;
+  String archetype;
 }
