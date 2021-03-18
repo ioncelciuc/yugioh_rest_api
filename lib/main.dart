@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yugioh_rest_api/screens/card_detail.dart';
 import 'package:yugioh_rest_api/screens/home.dart';
 import 'package:yugioh_rest_api/screens/load_data.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart' as DotEnv;

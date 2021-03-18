@@ -8,16 +8,23 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class LoadData extends StatefulWidget {
   static const String id = 'LoadData';
+
+  final String link;
+  LoadData({@required this.link});
   @override
   _LoadDataState createState() => _LoadDataState();
 }
 
-class _LoadDataState extends State<LoadData> {
-  List<YuGiOhCard> cardList = List<YuGiOhCard>();
+class _LoadDataState extends State<LoadData>
+    with AutomaticKeepAliveClientMixin {
+  List<YuGiOhCard> cardList = [];
   bool isLoading = true;
 
+  @override
+  bool get wantKeepAlive => true;
+
   void downloadData() async {
-    Response response = await get(env['CARD_INFO']);
+    Response response = await get(widget.link);
     Map map = jsonDecode(response.body);
     List cards = map['data'];
 
@@ -27,6 +34,7 @@ class _LoadDataState extends State<LoadData> {
       card.name = cards[i]['name'];
       card.desc = cards[i]['desc'];
       card.type = cards[i]['type'];
+      card.race = cards[i]['race'];
       card.image = cards[i]['card_images'][0]['image_url'];
       card.imageSmall = cards[i]['card_images'][0]['image_url_small'];
       card.archetype = cards[i]['archetype'];
@@ -45,6 +53,7 @@ class _LoadDataState extends State<LoadData> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       backgroundColor: Colors.grey[250],
       body: isLoading
