@@ -44,6 +44,16 @@ class _ArchetypesPageState extends State<ArchetypesPage>
     super.build(context);
     return Scaffold(
       backgroundColor: Colors.grey[250],
+      appBar: AppBar(
+        actions: [
+          IconButton(
+            icon: Icon(Icons.search),
+            onPressed: () {
+              //
+            },
+          ),
+        ],
+      ),
       body: isLoading
           ? Center(
               child: SpinKitFadingCircle(

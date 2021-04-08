@@ -28,6 +28,11 @@ dependencies:
   flutter_gradient_colors: ^1.0.0
   flutter_spinkit: ^4.1.2+1
   flutter_dotenv: ^3.1.0
+  marquee_widget: ^1.0.0
+  theme_manager: ^1.1.0
+  sqflite: ^2.0.0+3
+  path_provider: ^2.0.1
+  path: ^1.8.0
 
 
   # The following adds the Cupertino Icons font to your application.

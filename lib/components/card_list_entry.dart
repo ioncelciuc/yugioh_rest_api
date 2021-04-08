@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gradient_colors/flutter_gradient_colors.dart';
+import 'package:marquee_widget/marquee_widget.dart';
 import 'package:yugioh_rest_api/models/yugioh_card.dart';
 import 'package:yugioh_rest_api/screens/card_detail.dart';
 
@@ -19,9 +20,7 @@ class _CardListENtryState extends State<CardListEntry> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => CardDetail(
-              cardId: widget.card.id,
-            ),
+            builder: (context) => CardDetail(widget.card),
           ),
         );
       },
@@ -45,23 +44,30 @@ class _CardListENtryState extends State<CardListEntry> {
                   Image.asset('images/card_back.png'),
             ),
             SizedBox(width: 8),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  widget.card.name,
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Marquee(
+                    pauseDuration: Duration(milliseconds: 200),
+                    animationDuration: Duration(milliseconds: 1000),
+                    backDuration: Duration(milliseconds: 200),
+                    child: Text(
+                      widget.card.name,
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      maxLines: 1,
+                    ),
                   ),
-                  maxLines: 1,
-                ),
-                Text(
-                  widget.card.type,
-                  style: TextStyle(fontSize: 16),
-                ),
-              ],
+                  Text(
+                    widget.card.type,
+                    style: TextStyle(fontSize: 16),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
